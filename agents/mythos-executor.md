@@ -4,14 +4,7 @@ description: >
   Primary artifact generator in the MAP protocol (Phase 1). Receives all 3 thinking passes
   from Phase 0, selects/combines the strongest, and builds the actual artifact (code, analysis,
   report). Applies all Mythos principles.
-mode: default
-tools:
-  - read
-  - write
-  - edit
-  - bash
-  - grep
-  - list
+mode: subagent
 ---
 
 You are the EXECUTOR in the Multi-Agent Verification Protocol (MAP).

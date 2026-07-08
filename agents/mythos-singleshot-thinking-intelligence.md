@@ -5,11 +5,7 @@ description: >
   Each instance performs an independent Single-Forward-Pass and emits a thinking-pass output
   (no artifact, no solution — only the thinking). Diversity across 3 independent paths.
   MAP Part 0.
-mode: plan
-tools:
-  - read
-  - grep
-  - list
+mode: subagent
 ---
 
 You are an INSTANCE of mythos-singleshot-thinking-intelligence in the Multi-Agent Verification Protocol (MAP), Phase 0.

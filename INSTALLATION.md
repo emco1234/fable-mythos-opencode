@@ -43,31 +43,29 @@ cp ~/fable-mythos-opencode/AGENTS.md ~/.config/opencode/AGENTS.md
 cat ~/fable-mythos-opencode/AGENTS.md >> ~/.config/opencode/AGENTS.md
 ```
 
-### Step 4 — Register in opencode.json
+### Step 4 — Register Instructions in opencode.json
 
-Open `~/.config/opencode/opencode.json` and merge the agent definitions from [`opencode.json`](./opencode.json) in this repo.
+OpenCode auto-discovers the 5 agents from `agents/*.md` — **no need to register them manually**. You only need to ensure `AGENTS.md` is in your instructions array.
 
-The key changes:
-1. **Add the 5 agents** under `"agent"` (if you want them explicitly registered — OpenCode may also auto-discover from `agents/`)
-2. **Ensure AGENTS.md is in instructions**:
-   ```json
-   "instructions": [
-     "~/.config/opencode/AGENTS.md"
-   ]
-   ```
-3. **Ensure permissions allow all tools** (OpenCode defaults to allowing everything, but verify):
-   ```json
-   "permission": {
-     "bash": "allow",
-     "read": "allow",
-     "write": "allow",
-     "edit": "allow",
-     "agent": "allow",
-     "skill": "allow"
-   }
-   ```
+Add to `~/.config/opencode/opencode.json`:
 
-See the [`opencode.json`](./opencode.json) file in this repo for the full snippet.
+```json
+{
+  "instructions": [
+    "~/.config/opencode/AGENTS.md"
+  ],
+  "permission": {
+    "bash": "allow",
+    "read": "allow",
+    "write": "allow",
+    "edit": "allow",
+    "agent": "allow",
+    "skill": "allow"
+  }
+}
+```
+
+> **⚠️ Do NOT add the 5 mythos-* agents to the `"agent"` block** — OpenCode's schema requires `mode` to be `"subagent" | "primary" | "all"` and `tools` to be an object (not an array). The `.md` files handle agent configuration correctly via frontmatter. Adding JSON entries causes `ConfigInvalidError`.
 
 ### Step 5 — Restart OpenCode
 

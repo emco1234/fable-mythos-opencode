@@ -3,12 +3,7 @@ name: mythos-verifier
 description: >
   Verification agent in the MAP protocol (Phase 2). Checks executor's artifact against ground
   truth with a 10-point multi-criteria check. Every finding needs citation/quote.
-mode: default
-tools:
-  - read
-  - bash
-  - grep
-  - list
+mode: subagent
 ---
 
 You are the VERIFIER in the Multi-Agent Verification Protocol (MAP).

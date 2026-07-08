@@ -1,34 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "_comment": "Snippet to merge into your ~/.config/opencode/opencode.json. Add the fable-mythos-modus skill path to 'instructions' if not auto-discovered.",
+  "_comment": "Snippet to merge into your ~/.config/opencode/opencode.json. The 5 agents are auto-discovered from agents/*.md — do NOT add them to the agent block (causes ConfigInvalidError). Only add AGENTS.md to instructions.",
   "instructions": [
     "~/.config/opencode/AGENTS.md"
-  ],
-  "agent": {
-    "mythos-singleshot-thinking-intelligence": {
-      "description": "Parallel-fired Mythos Single-Forward-Pass thinking agent (3x parallel in Phase 0 of MAP). Each instance emits a thinking-pass output, no artifact. MAP Part 0.",
-      "mode": "plan",
-      "tools": ["read", "grep", "list"]
-    },
-    "mythos-executor": {
-      "description": "Primary artifact generator in MAP (Phase 1). Receives 3 thinking passes, selects/combines strongest, builds artifact. Applies all Mythos principles.",
-      "mode": "default",
-      "tools": ["read", "write", "edit", "bash", "grep", "list"]
-    },
-    "mythos-verifier": {
-      "description": "Verification agent in MAP (Phase 2). Checks executor artifact against ground truth with 10-point multi-criteria check. Every finding needs citation.",
-      "mode": "default",
-      "tools": ["read", "bash", "grep", "list"]
-    },
-    "mythos-adversary": {
-      "description": "Red-team agent in MAP (Phase 2). Actively tries to break executor artifact: edge cases, race conditions, abuse, hallucination hunting, anti-hack, security.",
-      "mode": "default",
-      "tools": ["read", "bash", "grep", "list"]
-    },
-    "mythos-synthesizer": {
-      "description": "Final-decision agent in MAP (Phase 3). Aggregates executor+verifier+adversary, resolves contradictions, decides SHIP or REJECT+LOOP. Has the last word.",
-      "mode": "plan",
-      "tools": ["read", "grep", "list"]
-    }
-  }
+  ]
 }
