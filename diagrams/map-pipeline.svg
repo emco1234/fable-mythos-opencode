@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="p0grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFA500"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </linearGradient>
+    <linearGradient id="p1grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E90FF"/>
+      <stop offset="100%" stop-color="#4169E1"/>
+    </linearGradient>
+    <linearGradient id="p2grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#228B22"/>
+      <stop offset="100%" stop-color="#006400"/>
+    </linearGradient>
+    <linearGradient id="p3grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A2BE2"/>
+      <stop offset="100%" stop-color="#663399"/>
+    </linearGradient>
+    <linearGradient id="outgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E8B57"/>
+      <stop offset="100%" stop-color="#008000"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">
+    MAP Pipeline — Multi-Agent Verification Protocol
+  </text>
+  <text x="450" y="58" text-anchor="middle" font-size="13" fill="#666">
+    Fable &amp; Mythos in ZCode — 5 Agents, 3 Parallel Thinking Passes
+  </text>
+
+  <!-- Task input -->
+  <rect x="350" y="80" width="200" height="40" rx="20" fill="#f5f5f5" stroke="#999" filter="url(#shadow)"/>
+  <text x="450" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">
+    Non-trivial Coding Task
+  </text>
+  <line x1="450" y1="120" x2="450" y2="145" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Phase 0 -->
+  <rect x="50" y="150" width="800" height="130" rx="10" fill="url(#p0grad)" opacity="0.15" stroke="#FFA500" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="70" y="175" font-size="12" font-weight="bold" fill="#FF8C00">PHASE 0 — PARALLEL THINKING (3×)</text>
+
+  <!-- MST instances -->
+  <g filter="url(#shadow)">
+    <rect x="100" y="190" width="200" height="70" rx="8" fill="url(#p0grad)"/>
+    <text x="200" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">MST Instance #1</text>
+    <text x="200" y="232" text-anchor="middle" font-size="10" fill="#fff">mythos-singleshot-</text>
+    <text x="200" y="245" text-anchor="middle" font-size="10" fill="#fff">thinking-intelligence</text>
+    <text x="200" y="258" text-anchor="middle" font-size="9" fill="#fffde7">→ Thinking Pass 1</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="350" y="190" width="200" height="70" rx="8" fill="url(#p0grad)"/>
+    <text x="450" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">MST Instance #2</text>
+    <text x="450" y="232" text-anchor="middle" font-size="10" fill="#fff">mythos-singleshot-</text>
+    <text x="450" y="245" text-anchor="middle" font-size="10" fill="#fff">thinking-intelligence</text>
+    <text x="450" y="258" text-anchor="middle" font-size="9" fill="#fffde7">→ Thinking Pass 2</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="600" y="190" width="200" height="70" rx="8" fill="url(#p0grad)"/>
+    <text x="700" y="215" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">MST Instance #3</text>
+    <text x="700" y="232" text-anchor="middle" font-size="10" fill="#fff">mythos-singleshot-</text>
+    <text x="700" y="245" text-anchor="middle" font-size="10" fill="#fff">thinking-intelligence</text>
+    <text x="700" y="258" text-anchor="middle" font-size="9" fill="#fffde7">→ Thinking Pass 3</text>
+  </g>
+
+  <line x1="450" y1="280" x2="450" y2="320" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="460" y="305" font-size="11" fill="#666" font-style="italic">3 thinking passes flow to executor</text>
+
+  <!-- Phase 1: Executor -->
+  <g filter="url(#shadow)">
+    <rect x="250" y="325" width="400" height="80" rx="10" fill="url(#p1grad)"/>
+    <text x="450" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">PHASE 1 — mythos-executor</text>
+    <text x="450" y="370" text-anchor="middle" font-size="11" fill="#e6f2ff">Selects/combines strongest thinking,</text>
+    <text x="450" y="385" text-anchor="middle" font-size="11" fill="#e6f2ff">builds the artifact on top of it</text>
+  </g>
+
+  <line x1="450" y1="405" x2="450" y2="435" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Phase 2: Verifier + Adversary -->
+  <rect x="50" y="440" width="800" height="100" rx="10" fill="url(#p2grad)" opacity="0.15" stroke="#228B22" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="70" y="465" font-size="12" font-weight="bold" fill="#228B22">PHASE 2 — INDEPENDENT VERIFICATION (PARALLEL)</text>
+
+  <g filter="url(#shadow)">
+    <rect x="100" y="478" width="320" height="50" rx="8" fill="url(#p2grad)"/>
+    <text x="260" y="500" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">mythos-verifier</text>
+    <text x="260" y="517" text-anchor="middle" font-size="10" fill="#e6ffe6">Checks against ground truth, tests, docs</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="480" y="478" width="320" height="50" rx="8" fill="#dc143c"/>
+    <text x="640" y="500" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">mythos-adversary (Red Team)</text>
+    <text x="640" y="517" text-anchor="middle" font-size="10" fill="#ffe6e6">Actively tries to break the artifact</text>
+  </g>
+
+  <line x1="450" y1="540" x2="450" y2="575" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Phase 3: Synthesizer -->
+  <g filter="url(#shadow)">
+    <rect x="250" y="580" width="400" height="80" rx="10" fill="url(#p3grad)"/>
+    <text x="450" y="605" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">PHASE 3 — mythos-synthesizer</text>
+    <text x="450" y="624" text-anchor="middle" font-size="11" fill="#f2e6ff">Aggregates 3 tracks, resolves conflicts,</text>
+    <text x="450" y="640" text-anchor="middle" font-size="11" fill="#f2e6ff">decides: Ship ✅ or Reject + Loop (max 3)</text>
+  </g>
+
+  <line x1="450" y1="660" x2="450" y2="685" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Output -->
+  <rect x="320" y="690" width="260" height="25" rx="12" fill="url(#outgrad)"/>
+  <text x="450" y="707" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">
+    ✅ Final Delivery (with confidence %)
+  </text>
+
+  <!-- Legend -->
+  <g transform="translate(720, 690)">
+    <text x="0" y="0" font-size="9" fill="#666">5 agents · 7 total invocations</text>
+  </g>
+</svg>

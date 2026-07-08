@@ -1,0 +1,31 @@
+{
+  "name": "fable-mythos-opencode",
+  "version": "1.0.0",
+  "description": "5-agent MAP verification protocol with 3x parallel Mythos Single-Forward-Pass thinking for OpenCode CLI. Native plugin using OpenCode's agents/, skills/, and AGENTS.md mechanisms.",
+  "main": "index.js",
+  "scripts": {
+    "install-plugin": "node scripts/install.js"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-cli",
+    "mythos",
+    "fable",
+    "multi-agent",
+    "map-protocol",
+    "single-forward-pass",
+    "reasoning",
+    "verification",
+    "subagents",
+    "ai-coding",
+    "behavioral-priming",
+    "anti-concealment"
+  ],
+  "author": "emco1234",
+  "license": "MIT",
+  "homepage": "https://github.com/emco1234/fable-mythos-opencode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emco1234/fable-mythos-opencode.git"
+  }
+}
