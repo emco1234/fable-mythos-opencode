@@ -78,6 +78,8 @@ This is fully idempotent — re-running it never appends a second copy.
 
 ### Step 4 — Configure opencode.json
 
+> **Do I need to create the sub-agents manually?** No. OpenCode **auto-discovers** every `.md` file in `~/.config/opencode/agents/` from its frontmatter (`name`, `description`, `mode`, `tools`). Copying the files is the entire install — there is no UI step and no manual agent creation.
+
 OpenCode **auto-discovers** every `.md` file in `~/.config/opencode/agents/` via its frontmatter (`name`, `description`, `mode`, `tools`). Do **NOT** add any agent entries to an `agent` block in JSON — that causes `ConfigInvalidError`. The agent's tool list lives in the `tools:` field of each agent's frontmatter.
 
 Merge the following into `~/.config/opencode/opencode.json`. The valid OpenCode permission keys are `read`, `edit`, `bash`, `task`, and `skill`. The keys `write` and `agent` are **not** valid (deprecated by this project) — `edit` covers `write`/`edit`/`apply_patch`, and `task` covers subagent invocations.
