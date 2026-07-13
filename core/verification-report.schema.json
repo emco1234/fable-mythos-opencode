@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/emco1234/fable-mythos-opencode/raw/main/core/verification-report.schema.json",
+  "title": "Verification Report",
+  "description": "Structured output produced by reliability-verifier (and contributed to by reliability-lead's self-verification). Consumed by the deterministic Done Gate. Every claim must rest on an actually-executed command with observed output — no 'should work', no 'X% confident' without evidence.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "status",
+    "evidence",
+    "acceptance_results",
+    "scope_violations",
+    "residual_unknowns"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "References task-contract.task_id."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["VERIFIED", "PARTIALLY_VERIFIED", "BLOCKED", "UNVERIFIED"],
+      "description": "Final status, decided by the deterministic Done Gate. VERIFIED requires every MUST backed by evidence, every test green after the final edit, build/typecheck/lint ok, no CRITICAL/HIGH, no scope violation, final check on clean checkout. There is no 'SHIP with 85%'."
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Every command actually executed and its observed result. No entry may rest on a command that was not run.",
+      "items": {
+        "type": "object",
+        "required": ["command", "result", "passed"],
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The exact command executed (e.g., 'npm test -- --grep AC1', 'git diff --stat', 'tsc --noEmit')."
+          },
+          "result": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Observed output or summary (exit code, failing test name, file list). Quote the relevant portion; do not paraphrase away load-bearing detail."
+          },
+          "passed": {
+            "type": "boolean",
+            "description": "True if the command's pass/fail oracle indicated pass; false otherwise."
+          }
+        }
+      }
+    },
+    "acceptance_results": {
+      "type": "array",
+      "description": "One entry per acceptance criterion in the task contract. The Done Gate requires every entry to be PASS for VERIFIED.",
+      "items": {
+        "type": "object",
+        "required": ["id", "result"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AC[0-9]+$",
+            "description": "References task-contract.acceptance_criteria[].id."
+          },
+          "result": {
+            "type": "string",
+            "enum": ["PASS", "FAIL", "UNVERIFIED"],
+            "description": "PASS = backed by executed evidence; FAIL = executed and observed failing; UNVERIFIED = no command was run for this criterion."
+          }
+        }
+      }
+    },
+    "scope_violations": {
+      "type": "array",
+      "description": "Files modified outside task-contract.allowed_scope. Any non-empty list blocks VERIFIED.",
+      "items": {
+        "type": "object",
+        "required": ["path", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "residual_unknowns": {
+      "type": "array",
+      "description": "Unresolved questions or untested paths. Non-empty caps the status at PARTIALLY_VERIFIED at best.",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

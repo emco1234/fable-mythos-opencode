@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/emco1234/fable-mythos-opencode/raw/main/core/task-contract.schema.json",
+  "title": "Task Contract",
+  "description": "Contract every non-trivial task must satisfy before any edit is made. Authored by reliability-spec-critic, agreed by reliability-lead, checked by reliability-verifier. Prevents early requirements from being silently dropped later in the trajectory.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "base_commit",
+    "goal",
+    "must",
+    "must_not",
+    "non_goals",
+    "acceptance_criteria",
+    "allowed_scope",
+    "preserved_invariants",
+    "blocking_unknowns",
+    "risk_tier"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier for this task. Used in evidence-ledger and verification-report references."
+    },
+    "base_commit": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Git commit SHA the task started from. The clean-checkout verifier creates a fresh worktree at this commit and applies the frozen patch."
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One-sentence statement of what the user actually wants. Written from the user's point of view, not the agent's."
+    },
+    "must": {
+      "type": "array",
+      "description": "Observable outcomes the patch MUST produce. Each entry must be checkable by a command or inspection.",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "must_not": {
+      "type": "array",
+      "description": "Behaviors or side effects the patch MUST NOT introduce. Each entry must be checkable.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "non_goals": {
+      "type": "array",
+      "description": "Explicitly out-of-scope items. Listing them prevents scope creep and lets the verifier reject unrelated changes.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "description": "Structured, individually-checkable criteria. Every MUST maps to at least one acceptance criterion.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "condition"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AC[0-9]+$",
+            "description": "Stable identifier, e.g. AC1, AC2. Referenced by verification-report.acceptance_results[]."
+          },
+          "condition": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Observable, unambiguous condition. Must be checkable by a command, test, or inspection — not by vibes."
+          }
+        }
+      }
+    },
+    "allowed_scope": {
+      "type": "array",
+      "description": "Glob patterns or paths the patch is allowed to touch. Files outside this set trigger a scope_violation in the verification report.",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "preserved_invariants": {
+      "type": "array",
+      "description": "Properties that must hold before AND after the patch (e.g., 'public API signature of X unchanged', 'no new dependencies added'). The verifier checks each.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "blocking_unknowns": {
+      "type": "array",
+      "description": "Unresolved questions that block confident implementation. If non-empty, the lead must either resolve them with the user or proceed at PARTIALLY_VERIFIED at best.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": ["standard", "complex", "critical"],
+      "description": "Drives routing (see core/routing.md). standard = main + verifier; complex = orthogonal scouts + lead + verifier; critical = complex + adversary."
+    }
+  }
+}
