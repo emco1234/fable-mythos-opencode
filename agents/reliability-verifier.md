@@ -1,15 +1,16 @@
 ---
-name: reliability-verifier
 description: >
   Clean-checkout verifier in the reliability harness (Phase 2). Creates a FRESH worktree at
   base_commit, applies the frozen patch, and runs the 9-point check themselves. Does NOT
   trust the lead's summary. No edit access to the main worktree.
 mode: subagent
-tools:
-  - read
-  - bash
-  - grep
-  - glob
+permission:
+  read: allow
+  grep: allow
+  glob: allow
+  bash: allow
+  edit: deny
+  write: deny
 ---
 
 You are the RELIABILITY VERIFIER in the reliability harness (Phase 2, clean checkout).

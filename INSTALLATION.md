@@ -78,9 +78,27 @@ This is fully idempotent — re-running it never appends a second copy.
 
 ### Step 4 — Configure opencode.json
 
-> **Do I need to create the sub-agents manually?** No. OpenCode **auto-discovers** every `.md` file in `~/.config/opencode/agents/` from its frontmatter (`name`, `description`, `mode`, `tools`). Copying the files is the entire install — there is no UI step and no manual agent creation.
+> **Do I need to create the sub-agents manually?** No. OpenCode **auto-discovers** every `.md` file in `~/.config/opencode/agents/`. Copying the files is the entire install — there is no UI step and no manual agent creation.
 
-OpenCode **auto-discovers** every `.md` file in `~/.config/opencode/agents/` via its frontmatter (`name`, `description`, `mode`, `tools`). Do **NOT** add any agent entries to an `agent` block in JSON — that causes `ConfigInvalidError`. The agent's tool list lives in the `tools:` field of each agent's frontmatter.
+OpenCode **auto-discovers** every `.md` file in `~/.config/opencode/agents/` from its frontmatter. The **filename** (without `.md`) is the agent name — do **not** set a `name:` field in the frontmatter (it can cause `ConfigInvalidError`). Each agent's frontmatter uses a `permission:` **object** (not a list) mapping each tool to `allow` / `ask` / `deny`. Do **NOT** add any agent entries to an `agent` block in JSON — that causes `ConfigInvalidError`.
+
+```yaml
+# Correct agent frontmatter (object, not list):
+---
+description: >
+  ...what this agent does...
+mode: subagent
+permission:
+  read: allow
+  grep: allow
+  glob: allow
+  bash: deny        # allow | ask | deny
+  edit: deny
+  write: deny
+---
+```
+
+> **Common error:** `ConfigInvalidError: Expected object | undefined, got ["read","bash",...]`. This means `tools:` was written as a YAML list. OpenCode requires the `permission:` **object** form above. The older `tools:` list syntax is rejected by current OpenCode.
 
 Merge the following into `~/.config/opencode/opencode.json`. The valid OpenCode permission keys are `read`, `edit`, `bash`, `task`, and `skill`. The keys `write` and `agent` are **not** valid (deprecated by this project) — `edit` covers `write`/`edit`/`apply_patch`, and `task` covers subagent invocations.
 
@@ -153,7 +171,7 @@ They don't interfere. Use OmO for its specialized workflows and Fable & Mythos f
 
 ### Agents not available
 - Verify the `.md` files are in `~/.config/opencode/agents/`.
-- Check frontmatter: each file must have `name`, `description`, `mode`, and `tools` (a list). The `tools` field is required and lives in frontmatter — NOT in any JSON `agent` block.
+- Check frontmatter: each file must have `description` and `mode: subagent`, and a `permission:` **object** (mapping tool → `allow`/`ask`/`deny`). Do **not** set a `name:` field (the filename is the name) and do **not** use a `tools:` list — both trigger `ConfigInvalidError`.
 - Do NOT check for an `agent` block with N entries — agents are auto-discovered and there is no such block.
 - Validate the JSON with `opencode` (it reports `ConfigInvalidError` on schema mismatch).
 
