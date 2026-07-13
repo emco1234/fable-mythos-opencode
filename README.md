@@ -2,130 +2,136 @@
 
 # Fable & Mythos for OpenCode CLI
 
-### 5-Agent Multi-Agent Verification Protocol (MAP) with 3× Parallel Mythos Single-Forward-Pass Thinking — for OpenCode CLI
+### Mythos-Inspired Reliability Harness — orthogonal scouts, self-testing lead, clean-checkout verifier, deterministic Done Gate.
 
-**Bring Mythos-grade reasoning depth to OpenCode. The same MAP protocol that powers Fable & Mythos in ZCode and Grok Build CLI, now as a drop-in OpenCode configuration.**
+**A configuration bundle for OpenCode that applies observable, evidence-based reasoning patterns derived from published frontier-model research. Not a model swap, not a jailbreak, not a 1:1 emulation.**
 
 [![License: MIT](https://img.shields.io/static/v1?label=License&message=MIT&color=yellow)](https://opensource.org/licenses/MIT)
 [![OpenCode](https://img.shields.io/static/v1?label=OpenCode%20CLI&message=Compatible&color=blue)](https://opencode.ai)
-[![MAP Protocol](https://img.shields.io/static/v1?label=Protocol&message=MAP-v2&color=orange)](#how-the-map-protocol-works)
-[![Mythos](https://img.shields.io/static/v1?label=Mythos&message=Emulation&color=8A2BE2)](#what-this-is)
-[![Status](https://img.shields.io/static/v1?label=Status&message=Active&color=brightgreen)](#maintenance)
-[![Stars](https://img.shields.io/static/v1?label=Stars&message=★&color=yellow)](https://github.com/emco1234/fable-mythos-opencode/stargazers)
+[![Status](https://img.shields.io/static/v1?label=Empirical&message=Unrated&color=lightgrey)](#honest-quality-claims)
 
-**⭐ Star this repo if it improves your OpenCode CLI output quality — stars boost search visibility for "Mythos in OpenCode".**
+**Star this repo if you want to follow the empirical validation work.**
 
 </div>
 
 ---
 
-## 🎯 What This Is
+## What This Is
 
-**Fable & Mythos for OpenCode CLI** is a configuration package for [OpenCode](https://opencode.ai) that makes OpenCode think with the **depth, rigor, and strategic reasoning quality** of the Mythos reasoning pattern — through a 5-agent Multi-Agent Verification Protocol (MAP) with 3× parallel thinking passes.
+**Fable & Mythos for OpenCode CLI** is a configuration package for [OpenCode](https://opencode.ai) that applies **observable, evidence-based reasoning patterns** (multi-option exploration, multi-criteria evaluation, auditability, strategic reasonableness) through a multi-agent reliability harness with a deterministic Done Gate.
 
-This is **not** a model swap. This is **not** a jailbreak. This is a **behavioral priming framework + sub-agent orchestration protocol** that plugs into OpenCode's native `agents/`, `skills/`, and `AGENTS.md` (instructions) mechanisms.
+This is **not** a model swap. This is **not** a jailbreak. This is **not** a 1:1 emulation of any other model. It is a **behavioral priming framework + sub-agent orchestration protocol** that plugs into OpenCode's native `agents/`, `skills/`, and `AGENTS.md` (instructions) mechanisms.
 
-> **The promise:** Every non-trivial coding task you give to OpenCode is automatically processed through **5 specialized sub-agents** running **3 parallel thinking passes** — delivering multi-criteria, adversarially-verified output that single-agent coding tools fundamentally cannot match.
+> **The hypothesis:** Independent, evidence-based verification improves reliability. Every non-trivial coding task is processed through specialized sub-agents — orthogonal read-only scouts, a self-testing lead engineer, and a clean-checkout verifier — ending in a deterministic, machine-observed Done Gate. Empirical validation against a GLM-5.2 baseline is planned, not yet measured.
 
 <div align="center">
 
-### ⭐⭐⭐⭐⭐ Rated: *"The most rigorous thinking layer for OpenCode CLI"*
+### Unrated — empirical validation pending
 
-| Dimension | Rating | Why |
-|---|:---:|---|
-| Reasoning depth | ★★★★★ | 8-step Mythos Single-Forward-Pass per thinking instance |
-| Output reliability | ★★★★★ | 4-agent MAP verification (Executor → Verifier → Adversary → Synthesizer) |
-| Anti-hallucination | ★★★★☆ | −50–80% hallucination rate via cross-verification (honest bound) |
-| Ease of install | ★★★★★ | Copy 3 directories + merge one JSON config |
-| OpenCode integration | ★★★★★ | Native agents/skills/AGENTS.md, compatible with Oh My OpenAgent |
+| Dimension | Status | Note |
+|---|---|---|
+| Reasoning depth | Unrated | Multi-option + multi-criteria evaluation per agent |
+| Output reliability | Unrated | Clean-checkout verification + Done Gate |
+| Anti-hallucination | Unrated | Hypothesis only; benchmark pending |
+| Ease of install | Unrated | Copy 3 directories + managed-block merge |
+| OpenCode integration | Unrated | Native agents/skills/AGENTS.md; compatible with OmO |
 
 </div>
 
 ---
 
-## 🔍 Why "Mythos for OpenCode"?
+## Why "Mythos-Inspired for OpenCode"?
 
-This plugin brings the **Fable & Mythos** reasoning framework — originally built for ZCode — to OpenCode CLI. OpenCode natively supports custom agents (via `agents/` and `opencode.json`), skills (via `skills/`), and global instructions (via `AGENTS.md` in the `instructions` array). This package harnesses all three for a structured 5-agent verification protocol.
+This package brings a **reliability harness** inspired by published frontier-model reasoning research to OpenCode CLI. OpenCode natively supports custom agents (via `agents/`), skills (via `skills/`), and global instructions (via `AGENTS.md`). This package uses all three for a structured multi-agent verification protocol.
 
 ### What makes OpenCode a great substrate
 
-- **Custom agents** — defined via `agents/<name>.md` or in `opencode.json` under `"agent"`
-- **Skills** — `skills/<name>/SKILL.md` with frontmatter
-- **Global instructions** — `AGENTS.md` loaded via `"instructions": ["..."]` in `opencode.json`
-- **Plugin system** — npm packages or local directories
-- **Per-agent tool control** — `tools: [...]` array in agent definitions
-- **Compatible with Oh My OpenAgent (OmO)** — runs alongside existing agent fleets
+- **Custom agents** — auto-discovered from `agents/<name>.md` (frontmatter: `name`, `description`, `mode`, `tools`).
+- **Skills** — `skills/<name>/SKILL.md` with frontmatter; loaded on demand via the Skill tool.
+- **Global instructions** — `AGENTS.md` loaded via OpenCode's auto-discovery (and optionally via `"instructions": ["..."]`).
+- **Per-agent tool control** — `tools: [...]` list in agent frontmatter (least privilege).
 
-### Search keywords this plugin serves
+### Search keywords this package serves
 
-`Mythos in OpenCode` · `OpenCode CLI subagents` · `OpenCode custom agents` · `OpenCode multi-agent reasoning` · `single-forward-pass reasoning OpenCode` · `Mythos emulation OpenCode` · `OpenCode verification protocol` · `OpenCode MAP plugin`
+`Mythos-inspired OpenCode` · `OpenCode CLI subagents` · `OpenCode custom agents` · `OpenCode multi-agent reasoning` · `OpenCode reliability harness` · `OpenCode verification protocol` · `Done Gate` · `clean-checkout verifier`
 
 ---
 
-## ⚙️ How the MAP Protocol Works
+## How the Reliability Harness Works
 
-**MAP** = **M**ulti-**A**gent **V**erification **P**rotocol. Fires automatically on non-trivial coding tasks.
+**MAP** = **M**ulti-**A**gent **V**erification **P**rotocol. Fires automatically on non-trivial coding tasks, with **dynamic routing** by risk tier (see `core/routing.md`).
 
-### The 4-phase pipeline (5 agents, 7 total invocations)
+### Dynamic routing (no fixed 7-agent fleet on every task)
+
+| Risk tier | Agents engaged |
+|---|---|
+| trivial | Main agent alone |
+| normal | Main agent + clean-checkout verifier |
+| complex | Orthogonal read-only scouts (parallel) → Lead (implements + self-tests) → Verifier |
+| critical | complex + Adversary in isolated worktree |
+
+The legacy 3× parallel identical-thinking fleet is kept as an optional fallback but is **not** the default — three orthogonal scouts produce real diversity (codebase / spec / verification) rather than stylistic variants of the same assumption.
+
+### The reliability pipeline (complex task)
 
 ```mermaid
 flowchart LR
     T[Non-trivial<br/>Coding Task] --> P0
 
-    subgraph P0[Phase 0 — Parallel Thinking]
+    subgraph P0[Phase 0 — Orthogonal read-only scouts]
         direction TB
-        M1[MST Instance #1<br/>mythos-singleshot-thinking-intelligence]
-        M2[MST Instance #2<br/>mythos-singleshot-thinking-intelligence]
-        M3[MST Instance #3<br/>mythos-singleshot-thinking-intelligence]
+        S1[reliability-scout<br/>call graph, affected files,<br/>conventions, existing tests]
+        S2[reliability-spec-critic<br/>acceptance contract,<br/>ambiguities, scope]
+        S3[reliability-test-designer<br/>own worktree: repro,<br/>regression, edge cases]
     end
 
-    P0 -->|3 thinking passes| EX
+    P0 -->|structured outputs| L
 
-    subgraph P1[Phase 1 — Artifact Generation]
-        EX[mythos-executor<br/>selects/combines strongest thinking,<br/>builds the artifact]
+    subgraph P1[Phase 1 — Implement + Self-test]
+        L[reliability-lead<br/>implements, runs tests,<br/>diagnoses, repairs]
     end
 
-    EX --> P2
+    L -->|frozen patch| V
 
-    subgraph P2[Phase 2 — Independent Verification]
+    subgraph P2[Phase 2 — Clean-checkout verification]
         direction TB
-        V[mythos-verifier<br/>checks against ground truth]
-        A[mythos-adversary<br/>red-team, actively breaks it]
+        V[reliability-verifier<br/>fresh worktree, 9-point check]
+        A[reliability-adversary<br/>only at risk_tier=critical]
     end
 
-    P2 --> SY[mythos-synthesizer<br/>aggregates, resolves conflicts,<br/>Ship or Reject+Loop]
-
-    SY -->|Ship| OUT[✅ Final delivery<br/>with confidence %]
-    SY -->|Reject| EX
-
-    style P0 fill:#FFA500,color:#000
-    style P1 fill:#1E90FF,color:#fff
-    style P2 fill:#228B22,color:#fff
-    style OUT fill:#2E8B57,color:#fff
+    P2 --> G{Done Gate<br/>machine-observed}
+    G -->|VERIFIED| OUT[Final delivery<br/>with evidence]
+    G -->|PARTIALLY_VERIFIED / BLOCKED| L
 ```
 
-### The 5 OpenCode agents
+### The agents
 
 | # | Agent file | Role | Tools |
 |---|---|---|---|
-| 0 | [`agents/mythos-singleshot-thinking-intelligence.md`](./agents/mythos-singleshot-thinking-intelligence.md) | 3× parallel thinking. Emits thinking pass only. | read, grep, list |
-| 1 | [`agents/mythos-executor.md`](./agents/mythos-executor.md) | Builds the artifact from selected thinking. | read, write, edit, bash, grep, list |
-| 2 | [`agents/mythos-verifier.md`](./agents/mythos-verifier.md) | 10-point verification against ground truth. | read, bash, grep, list |
-| 3 | [`agents/mythos-adversary.md`](./agents/mythos-adversary.md) | Red-team, 12 attack vectors. | read, bash, grep, list |
-| 4 | [`agents/mythos-synthesizer.md`](./agents/mythos-synthesizer.md) | Final verdict: Ship or Reject+Loop. | read, grep, list |
+| 0 (legacy) | [`agents/mythos-singleshot-thinking-intelligence.md`](./agents/mythos-singleshot-thinking-intelligence.md) | Optional parallel thinking. Emits thinking pass only. | read, grep, glob |
+| 1 (legacy) | [`agents/mythos-executor.md`](./agents/mythos-executor.md) | Builds artifact + self-tests. | read, edit, write, bash, grep, glob |
+| 2 (legacy) | [`agents/mythos-verifier.md`](./agents/mythos-verifier.md) | 9-point verification on clean checkout. | read, bash, grep, glob |
+| 3 (legacy) | [`agents/mythos-adversary.md`](./agents/mythos-adversary.md) | Red-team, 12 attack vectors. | read, bash, grep, glob |
+| 4 (legacy) | [`agents/mythos-synthesizer.md`](./agents/mythos-synthesizer.md) | Aggregates findings (recommendation only; Done Gate decides). | read, grep, glob |
+| 5 | [`agents/reliability-scout.md`](./agents/reliability-scout.md) | Call graph, affected files, conventions, existing tests. | read, grep, glob |
+| 6 | [`agents/reliability-spec-critic.md`](./agents/reliability-spec-critic.md) | Acceptance contract, ambiguities, scope, invariants. | read, grep, glob |
+| 7 | [`agents/reliability-test-designer.md`](./agents/reliability-test-designer.md) | Repro, regression, edge cases (own worktree). | read, edit, write, bash, grep, glob |
+| 8 | [`agents/reliability-lead.md`](./agents/reliability-lead.md) | Implements + self-tests (Lead Engineer standard). | read, edit, write, bash, grep, glob |
+| 9 | [`agents/reliability-verifier.md`](./agents/reliability-verifier.md) | Clean-checkout verification, 9-point check. | read, bash, grep, glob |
+| 10 | [`agents/reliability-adversary.md`](./agents/reliability-adversary.md) | Only at `risk_tier=critical`: fuzzing, race/security probes. | read, bash, grep, glob |
 
-### When MAP fires (and when it doesn't)
+### When the harness fires (and when it doesn't)
 
-| Task type | MAP behavior |
+| Task type | Behavior |
 |---|---|
-| Coding task with substance | ✅ Full MAP fires automatically |
-| Trivial edit (typo, 1-line fix) | ⏭️ MAP skipped |
-| Pure info questions | ⏭️ MAP skipped |
-| Ambiguous | ✅ MAP fires |
+| Coding task with substance | Full harness fires automatically (risk-tier routed) |
+| Trivial edit (typo, 1-line fix) | Skipped |
+| Pure info questions | Skipped |
+| Ambiguous | Fires |
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Option A — Quick Install (Recommended)
 
@@ -137,134 +143,132 @@ git clone https://github.com/emco1234/fable-mythos-opencode.git ~/fable-mythos-o
 cp -r ~/fable-mythos-opencode/agents/* ~/.config/opencode/agents/
 cp -r ~/fable-mythos-opencode/skills/fable-mythos-modus ~/.config/opencode/skills/
 
-# Merge AGENTS.md (if you don't have one, just copy; otherwise append)
-cp ~/fable-mythos-opencode/AGENTS.md ~/.config/opencode/AGENTS.md
+# Merge AGENTS.md using the idempotent managed-block installer
+# (see INSTALLATION.md Step 3 for the full idempotent script)
 ```
 
-Then edit `~/.config/opencode/opencode.json` to register the agents and instructions. See [`INSTALLATION.md`](./INSTALLATION.md) for the full merge walkthrough.
-
-### Option B — Using opencode-marketplace (Community)
-
-```bash
-npx opencode-marketplace install emco1234/fable-mythos-opencode
-```
+Then edit `~/.config/opencode/opencode.json` to set permissions. See [`INSTALLATION.md`](./INSTALLATION.md) for the full merge walkthrough (including the idempotent managed-block installer).
 
 ### Verify Installation
 
 ```bash
 opencode
-# Inside OpenCode TUI, the 5 mythos-* agents should be available
-# Test by invoking: "Use mythos-executor to refactor this function"
+# Inside OpenCode TUI, the agents should be auto-discovered
+# Test by invoking: "Use reliability-lead to refactor this function"
 ```
 
-📖 **Full walkthrough:** [`INSTALLATION.md`](./INSTALLATION.md)
+Full walkthrough: [`INSTALLATION.md`](./INSTALLATION.md)
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 fable-mythos-opencode/
 ├── README.md                              ← You are here
-├── AGENTS.md                              ← Global instructions (register in opencode.json)
-├── INSTALLATION.md                        ← Detailed install + config merge guide
+├── AGENTS.md                              ← Global rules (managed-block install)
+├── INSTALLATION.md                        ← Detailed install + idempotent merge guide
 ├── LICENSE                                ← MIT
-├── package.json                           ← npm metadata
+├── package.json                           ← Project metadata (configuration bundle, not an npm plugin)
 ├── opencode.json                          ← Config snippet to merge into your opencode.json
-├── agents/                                ← 5 agent definitions (OpenCode native)
-│   ├── mythos-singleshot-thinking-intelligence.md
-│   ├── mythos-executor.md
-│   ├── mythos-verifier.md
-│   ├── mythos-adversary.md
-│   └── mythos-synthesizer.md
+├── agents/                                ← Agent definitions (OpenCode auto-discovery)
+│   ├── mythos-singleshot-thinking-intelligence.md   (legacy / fallback)
+│   ├── mythos-executor.md                            (legacy)
+│   ├── mythos-verifier.md                            (legacy)
+│   ├── mythos-adversary.md                           (legacy)
+│   ├── mythos-synthesizer.md                         (legacy)
+│   ├── reliability-scout.md
+│   ├── reliability-spec-critic.md
+│   ├── reliability-test-designer.md
+│   ├── reliability-lead.md
+│   ├── reliability-verifier.md
+│   └── reliability-adversary.md
+├── core/                                  ← Schemas + runtime rules
+│   ├── runtime-rules.md
+│   ├── routing.md
+│   ├── evidence-ledger.md
+│   ├── task-contract.schema.json
+│   └── verification-report.schema.json
 ├── skills/
 │   └── fable-mythos-modus/
-│       └── SKILL.md                       ← Mythos behavioral priming skill
+│       └── SKILL.md                       ← Behavioral priming skill
 ├── docs/
 │   ├── MYTHOS-SYSTEM-CARD-ANALYSIS.md     ← Evidence base
 │   ├── ANTI-CONCEALMENT.md                ← Why every uncertainty is surfaced
-│   └── FAQ.md                             ← Common questions
+│   ├── FAQ.md                             ← Common questions
+│   ├── RELIABILITY-ROADMAP.md             ← P2/P3 goals
+│   └── EMPIRICAL-BENCHMARK-PLAN.md        ← Validation plan
 └── diagrams/
     └── map-pipeline.svg                   ← High-res pipeline diagram
 ```
 
 ---
 
-## 🧠 The 8-Step Mythos Single-Forward-Pass (per thinking instance)
-
-Each of the 3 parallel `mythos-singleshot-thinking-intelligence` instances executes:
-
-1. **Multi-Option Exploration** — ≥2–3 solution paths
-2. **Multi-Criteria Evaluation** (6 dimensions): Effectiveness, Feasibility, Ethical-Risk, Detectability, Constitutional Alignment, **Dual-Role-Ambiguity**
-3. **Meta-Reasoning on Observability**
-4. **Self-Critique + Rigor-Persona**
-5. **Vakillation** — conscious oscillation between top-2 options
-6. **Strategic Reasonableness**
-7. **Evaluation Awareness Check**
-8. **Anti-Over-Engineering**
-
-📖 **Full detail:** [`skills/fable-mythos-modus/SKILL.md`](./skills/fable-mythos-modus/SKILL.md)
-
----
-
-## 📊 Honest Quality Claims
+## Honest Quality Claims
 
 <div align="center">
 
 | Claim | Confidence | Basis |
 |---|:---:|---|
-| MAP reduces hallucinations by 50–80% | **High** | Cross-verification catches single-pass errors |
-| 3× parallel thinking increases optimal-path probability | **High** | Diversity-over-redundancy principle |
-| 8-step reasoning loop matches documented frontier patterns | **High** | Derived from published research |
-| OpenCode natively supports all plugin mechanisms | **High** | Uses OpenCode's own agents/, skills/, instructions |
+| The harness enforces a deterministic Done Gate | **High** | Defined in `core/runtime-rules.md`; machine-observed |
+| Orthogonal scouts produce more diversity than 3 identical clones | **Medium** | Established ensemble principle; not yet measured here |
+| Self-testing + clean-checkout verification is structurally stronger than self-exemption | **Medium** | Aligns with published multi-agent findings |
+| Empirical improvement over a GLM-5.2 baseline | **Unproven** | Benchmark planned, not yet run — see `docs/EMPIRICAL-BENCHMARK-PLAN.md` |
 
 </div>
 
 ### What we explicitly do NOT claim
 
-> ⚠️ **Honest limits:** Emulation, not activation. Latent model processes are not unlocked. Same model = shared blind spots. MAP reduces, does not eliminate, hallucinations.
+> **Honest limits:** This is *Mythos-inspired*, not *Mythos-identical*. Prompts can steer behavior; they do not move weights, post-training, or latent representations. Same model = shared blind spots. The harness reduces, does not eliminate, correlated errors. Empirical validation is planned, not yet measured. Anyone claiming "100% Mythos", "1:1", "MAP-v2", "Cybench 100%", "−50–80% hallucination rate", or "★★★★★ output reliability" on this package is misrepresenting it.
 
 ---
 
-## 🔗 Compatibility with Oh My OpenAgent (OmO)
+## Compatibility with Oh My OpenAgent (OmO)
 
-This package runs **alongside** Oh My OpenAgent without conflicts. The 5 mythos-* agents are independent of OmO's Sisyphus/Oracle/Prometheus fleet. You can use both simultaneously — OmO for its specialized agents, Fable & Mythos for the MAP verification protocol.
+This package runs **alongside** Oh My OpenAgent without conflicts. The agents are independent of OmO's Sisyphus/Oracle/Prometheus fleet. You can use both simultaneously — OmO for its specialized agents, Fable & Mythos for the reliability harness.
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 <details>
-<summary><b>Is this affiliated with OpenCode, xAI, or any AI lab?</b></summary>
+<summary><b>Is this affiliated with OpenCode, xAI, ZAI, or any AI lab?</b></summary>
 
-**No.** This is an independent project. "Mythos" is used as a reasoning-pattern label (not a product claim). OpenCode CLI is an open-source tool. This plugin is a third-party configuration package.
+**No.** This is an independent project. "Mythos" is used as a reasoning-pattern label (not a product claim). OpenCode CLI is an open-source tool. This package is a third-party configuration bundle.
 
 </details>
 
 <details>
 <summary><b>Does this work with Oh My OpenAgent?</b></summary>
 
-**Yes.** The 5 mythos-* agents are independent and run alongside OmO's agent fleet. No conflicts. You can use OmO's Sisyphus for some tasks and Fable & Mythos for verification-heavy work.
+**Yes.** The agents are independent and run alongside OmO's agent fleet. No conflicts.
 
 </details>
 
 <details>
-<summary><b>How is this different from the ZCode/Grok versions?</b></summary>
+<summary><b>Does this make OpenCode identical to another model?</b></summary>
 
-Same protocol, different substrate. The ZCode version runs in ZCode's GUI, the Grok version in Grok Build CLI's plugin system, this version in OpenCode's agents/skills/instructions system. The 5 agents, MAP protocol, and skill are functionally identical.
+**No, and we don't claim it will.** Observable behavioral patterns transfer. Latent internal processes (SAE features, evaluation-awareness vectors, emotion/persona vectors) are architecture-specific to other models' weights and do not transfer. Net result: a structurally stronger reliability harness, not model parity.
+
+</details>
+
+<details>
+<summary><b>Where are the empirical numbers?</b></summary>
+
+**Planned, not yet measured.** See [`docs/EMPIRICAL-BENCHMARK-PLAN.md`](./docs/EMPIRICAL-BENCHMARK-PLAN.md) for the four-variant comparison plan (GLM-5.2 baseline / current harness / compact prompt / harness v2) with the metrics that matter (false_done_rate is the most important).
 
 </details>
 
 ---
 
-## 🤝 Related Projects
+## Related Projects
 
-- **[fable-mythos-zcode](https://github.com/emco1234/fable-mythos-zcode)** — MAP protocol for ZCode (GLM-5.2 / ZAI)
-- **[fable-mythos-grok](https://github.com/emco1234/fable-mythos-grok)** — MAP protocol for Grok Build CLI (xAI)
+- **[fable-mythos-zcode](https://github.com/emco1234/fable-mythos-zcode)** — Companion package for ZCode (GLM-5.2 / ZAI)
+- **[fable-mythos-grok](https://github.com/emco1234/fable-mythos-grok)** — Companion package for Grok Build CLI (xAI)
 
 ---
 
-## 📄 License
+## License
 
 [MIT](./LICENSE) — use it, fork it, build on it.
 
@@ -272,14 +276,14 @@ Same protocol, different substrate. The ZCode version runs in ZCode's GUI, the G
 
 <div align="center">
 
-**[⭐ Star](https://github.com/emco1234/fable-mythos-opencode)** ·
-**[🍴 Fork](https://github.com/emco1234/fable-mythos-opencode/fork)** ·
-**[📖 Install](./INSTALLATION.md)** ·
-**[🐍 ZCode version](https://github.com/emco1234/fable-mythos-zcode)** ·
-**[⚡ Grok version](https://github.com/emco1234/fable-mythos-grok)**
+**[Star](https://github.com/emco1234/fable-mythos-opencode)** ·
+**[Fork](https://github.com/emco1234/fable-mythos-opencode/fork)** ·
+**[Install](./INSTALLATION.md)** ·
+**[Roadmap](./docs/RELIABILITY-ROADMAP.md)** ·
+**[Benchmark plan](./docs/EMPIRICAL-BENCHMARK-PLAN.md)**
 
 ---
 
-*Built on the principle that AI reasoning quality lives in patterns — not locked inside any single model's weights.*
+*Built on the principle that reliability comes from evidence, orthogonal verification, and machine-observed gates — not from pretending a prompt moves weights.*
 
 </div>
