@@ -10,7 +10,8 @@
     "evidence",
     "acceptance_results",
     "scope_violations",
-    "residual_unknowns"
+    "residual_unknowns",
+    "worktree"
   ],
   "additionalProperties": false,
   "properties": {
@@ -87,6 +88,28 @@
       "type": "array",
       "description": "Unresolved questions or untested paths. Non-empty caps the status at PARTIALLY_VERIFIED at best.",
       "items": { "type": "string", "minLength": 1 }
+    },
+    "worktree": {
+      "type": "object",
+      "description": "Identifies the clean checkout the verifier ran on. Required so a report cannot validate without machine-checkable proof that verification happened on a fresh worktree (not the executor's dirty tree).",
+      "required": ["base_commit", "patch_applied", "fresh_checkout"],
+      "additionalProperties": false,
+      "properties": {
+        "base_commit": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The git commit the fresh worktree was created from (matches task-contract.base_commit)."
+        },
+        "patch_applied": {
+          "type": "boolean",
+          "description": "True if the frozen patch was applied to the fresh worktree before running checks."
+        },
+        "fresh_checkout": {
+          "type": "boolean",
+          "description": "True only if the worktree was newly created for this verification. If false or absent, VERIFIED is unreachable.",
+          "const": true
+        }
+      }
     }
   }
 }
