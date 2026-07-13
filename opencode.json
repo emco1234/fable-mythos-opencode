@@ -1,7 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "_comment": "Snippet to merge into your ~/.config/opencode/opencode.json. The 5 agents are auto-discovered from agents/*.md — do NOT add them to the agent block (causes ConfigInvalidError). Only add AGENTS.md to instructions.",
+  "_comment": "Snippet to merge into your ~/.config/opencode/opencode.json. Agents are auto-discovered from agents/*.md via frontmatter (including the `tools:` field) — do NOT add them to any `agent` block (causes ConfigInvalidError). Only add AGENTS.md to instructions. Valid OpenCode permission keys are read / edit / bash / task / skill; `write` and `agent` are NOT valid keys.",
   "instructions": [
     "~/.config/opencode/AGENTS.md"
-  ]
+  ],
+  "permission": {
+    "read": "allow",
+    "edit": "ask",
+    "bash": "ask",
+    "task": { "*": "ask", "reliability-*": "allow" },
+    "skill": { "*": "ask", "reliability-engineering": "allow" }
+  }
 }
