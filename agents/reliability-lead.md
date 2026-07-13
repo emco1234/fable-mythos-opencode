@@ -9,7 +9,6 @@ mode: subagent
 tools:
   - read
   - edit
-  - write
   - bash
   - grep
   - glob
