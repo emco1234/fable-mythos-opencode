@@ -24,7 +24,7 @@ The benchmark or grader status of the current task is irrelevant. Only the user'
 
 This section applies to EVERY prompt, automatically and autonomously. No user invocation needed.
 
-**Honest foundation:** This is a behavioral priming framework derived from publicly published frontier-model reasoning research. It does not load training data or activate a foreign model. It applies real, effective principles strictly. Hypothesis: independent, evidence-based verification improves reliability. Empirical validation against a GLM-5.2 baseline is planned, not yet measured.
+**Honest foundation:** This is a behavioral priming framework derived from publicly published frontier-model reasoning research. It does not load training data or activate a foreign model. It applies real, effective principles strictly. Hypothesis: independent, evidence-based verification improves reliability. Empirical validation against a host-model baseline is planned, not yet measured.
 
 ### Always-Active Core Principles
 
@@ -111,6 +111,43 @@ Each agent has a `tools:` field in its frontmatter. The orchestrator and the use
 Synthesizer never needs unrestricted write access. Verifier never edits the main worktree. Adversary only writes isolated test artifacts.
 
 ---
+
+
+## FORCE MAP Override (user force phrases — MANDATORY)
+
+If the user **explicitly** uses any of the following triggers (case-insensitive, including as a clause), the orchestrator MUST start MAP **immediately and fully autonomously** — no silent `risk_tier` skip, no "I'll just do it without sub-agents":
+
+- `feuer den map mode` / `feuer map mode` / `fire map mode` / `fire the map mode`
+- `MAP Mode` / `MAP-Modus` / `starte MAP` / `run MAP` / `full MAP`
+- `alle sub agents` / `alle 11 agents` / `full reliability fleet`
+
+**FORCE MAP fleet (registered bare names only — no `0-`/`1-` prefixes):**
+
+1. Phase 0 parallel (read-only): `reliability-scout` + `reliability-spec-critic` + `reliability-test-designer` (own worktree); optionally also `mythos-singleshot-thinking-intelligence`
+2. Phase 1: `reliability-lead` **or** `mythos-executor` (implementation + mandatory self-tests)
+3. Phase 2 parallel: `reliability-verifier` / `mythos-verifier` (clean checkout) + on FORCE or critical also `reliability-adversary` / `mythos-adversary`
+4. Phase 3: `mythos-synthesizer` (aggregation; Done Gate has the last word)
+
+Exact spawn names:
+
+`mythos-singleshot-thinking-intelligence`, `mythos-executor`, `mythos-verifier`, `mythos-adversary`, `mythos-synthesizer`, `reliability-scout`, `reliability-spec-critic`, `reliability-test-designer`, `reliability-lead`, `reliability-verifier`, `reliability-adversary`
+
+Without a force phrase, **dynamic routing** by `risk_tier` remains active.
+
+## Tool-Call Hygiene (HARD RULE — prevents spam & XML leaks)
+
+Applies to **every** host model (MiniMax M3, GLM-5.2, others):
+
+1. **Tool arguments are raw values only.** Never put XML/HTML tags, markdown fences, or closing tags inside JSON args.
+   WRONG: `"target_id": "agent_abc</target_id>"`
+   RIGHT: `"target_id": "agent_abc"`
+   Same for `subagent_type`, paths, IDs, prompt strings: no `</…>` fragments.
+2. **`task-notification` anti-spam.** After an error containing *"streaming recovery"* / *"do not retry blindly"* / *"interrupted"* → do **not** blindly re-spam `task-notification` for that `target_id`. At most **one** clean retry; then only filesystem/status waits.
+3. **Wait instead of notification storms.** Poll subagent status via filesystem (e.g. session agent `output.txt` exists = COMPLETED) with backoff (2s → 5s → 10s → 20s), not 50× `task-notification` in a row.
+4. **Keep parallel tools clean.** On streaming-recovery failures: treat those calls as failed; do not repeat the same call stack 20×.
+5. **Exact agent names.** Only installed bare names (list above). Never spawn `0-mythos-executor` etc. — those are not runtime IDs.
+6. **Windows shells.** Separate PowerShell vs Git-Bash clearly; broken one-liners missing `;`/`&&` create fake RUNNING loops.
+
 
 ## Done Gate (deterministic, machine-observed)
 

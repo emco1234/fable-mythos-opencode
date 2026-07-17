@@ -1,0 +1,5 @@
+out/
+.transcripts/
+__pycache__/
+*.pyc
+

@@ -59,3 +59,9 @@ Compare to the legacy fixed pipeline (3 MST + 1 executor + 1 verifier + 1 advers
 ## When the orchestrator IS the lead
 
 At standard tier, the main agent implements directly and self-tests. This is fine — the cost is in the independent clean-checkout verification, not in spawning a lead subagent for a small change. At complex / critical tier, the lead is a subagent so the main agent can retain global context while the lead focuses.
+
+## Override (user-specified)
+
+1. **Task contract:** The user may force a `risk_tier` in the task contract (`risk_tier: critical`). The router honors the user's choice even if classification would have picked a lower tier.
+2. **FORCE MAP phrases (binding):** If the user says any of `feuer den map mode`, `fire map mode`, `MAP Mode`, `starte MAP`, `run MAP`, `full MAP`, `alle 11 agents`, `full reliability fleet` (case-insensitive), the orchestrator MUST run the full registered MAP fleet autonomously (see AGENTS.md "FORCE MAP Override"). Dynamic skip is forbidden for that turn.
+3. **Agent runtime names** are always bare: `mythos-executor`, not `1-mythos-executor`. Numbered filenames in the repo are source organization only.
