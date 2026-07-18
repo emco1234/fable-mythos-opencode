@@ -65,3 +65,10 @@ At standard tier, the main agent implements directly and self-tests. This is fin
 1. **Task contract:** The user may force a `risk_tier` in the task contract (`risk_tier: critical`). The router honors the user's choice even if classification would have picked a lower tier.
 2. **FORCE MAP phrases (binding):** If the user says any of `feuer den map mode`, `fire map mode`, `MAP Mode`, `starte MAP`, `run MAP`, `full MAP`, `alle 11 agents`, `full reliability fleet` (case-insensitive), the orchestrator MUST run the full registered MAP fleet autonomously (see AGENTS.md "FORCE MAP Override"). Dynamic skip is forbidden for that turn.
 3. **Agent runtime names** are always bare: `mythos-executor`, not `1-mythos-executor`. Numbered filenames in the repo are source organization only.
+
+## Goal Mode interaction (anti-hang)
+
+Do **not** nest ZCode/OpenCode/Grok Goal Mode as a multi-hour outer loop around full MAP fleets.
+MAP subagents must be short, foreground (or hard-timeout ≤ 20 min), and chunked (max 3–5 files per executor unit).
+If Goal Mode is active, use it only as a checklist; execute each MAP unit as a bounded subagent, never as a detached background marathon.
+

@@ -241,3 +241,16 @@ The installed `AGENTS.md` includes:
 
 If MAP does not fire on a force phrase, re-merge `AGENTS.md` from this repo and restart the CLI/TUI.
 
+---
+
+## Goal Mode + MAP (anti-hang)
+
+**Do not combine** long-running Goal Mode batches with full MAP fleets as unbounded background sessions.
+
+Recommended:
+1. MAP via foreground subagents for quality-critical work, **or**
+2. Goal Mode alone for large file batches, **or**
+3. Goal Mode checklist + **short** MAP subagents per item (≤ 20 min wall-clock, max 3–5 files).
+
+If you see "Running for Xm" for hours on a MAP background task: stop it manually, re-run with smaller chunks, and ensure `AGENTS.md` Anti-Hang rules are installed.
+

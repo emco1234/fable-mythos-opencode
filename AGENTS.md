@@ -133,6 +133,8 @@ Exact spawn names:
 `mythos-singleshot-thinking-intelligence`, `mythos-executor`, `mythos-verifier`, `mythos-adversary`, `mythos-synthesizer`, `reliability-scout`, `reliability-spec-critic`, `reliability-test-designer`, `reliability-lead`, `reliability-verifier`, `reliability-adversary`
 
 Without a force phrase, **dynamic routing** by `risk_tier` remains active.
+**Spawn mode:** MAP subagents are **foreground / bounded** (see Anti-Hang). No unbounded background session for whole MAP phases.
+
 
 ## Tool-Call Hygiene (HARD RULE — prevents spam & XML leaks)
 
@@ -148,6 +150,51 @@ Applies to **every** host model (MiniMax M3, GLM-5.2, others):
 5. **Exact agent names.** Only installed bare names (list above). Never spawn `0-mythos-executor` etc. — those are not runtime IDs.
 6. **Windows shells.** Separate PowerShell vs Git-Bash clearly; broken one-liners missing `;`/`&&` create fake RUNNING loops.
 
+
+
+## Anti-Hang: Goal Mode vs MAP + Background Watchdog (HARD RULE)
+
+### Known hang pattern
+Combining Goal Mode (Progress N/M, long "Running in background") with MAP often spawns a **detached background session per MAP phase/batch** with **no wall-clock timeout**. Symptom: "Running for 813m", manual stop required, todos stuck at e.g. 7/10 while "MAP Phase 1c …" runs forever.
+
+### Rule 1 — Do not nest Goal Mode and full MAP
+- **Do not** use Goal Mode as outer long-running orchestrator **and** fire full MAP fleets / multi-hour batches as background sessions inside it.
+- **Pick one orchestrator per run:**
+  - **A (recommended for quality):** MAP via **foreground subagents** (registered bare names). No Goal Mode required.
+  - **B:** Goal Mode **alone** for long multi-step todos (many files) — **without** full MAP fleet and **without** nested background MAP sessions.
+  - **C (if both wanted):** Goal Mode keeps the checklist; MAP runs **only as short foreground subagents per todo item** (max 1 lead + 1 verifier), **never** as an unbounded background session for "Phase 1c Bodies Batch …".
+- If the user says "feuer den map mode" **and** Goal Mode is active: **MAP wins for the current unit of work**; Goal Mode may only update checklist status and **must not** open a second background MAP session.
+
+### Rule 2 — MAP = real subagents, not detached background sessions
+- MAP phases (0/1/2/3) **must** run as **subagents** (platform task/spawn tools), **not** as unbound multi-hour background CLI sessions without parent control.
+- **Forbidden:** `run_in_background=true` / detached background / "new session for MAP batch" for lead/verifier/adversary/synthesizer/scout — unless the tool **requires** background **and** a **hard timeout ≤ 20 minutes** is set.
+- **Allowed:** short parallel scouts that finish in minutes and return artifacts.
+
+### Rule 3 — Wall-clock timeouts (watchdog)
+
+| Role | Max wall-clock |
+|---|---|
+| Scout / Spec-Critic / MST Thinking | **10 min** |
+| Test-Designer | **15 min** |
+| Lead / Executor (one batch unit) | **20 min** |
+| Verifier / Adversary | **15 min** |
+| Synthesizer | **5 min** |
+| Any background task with no result | **20 min absolute** → stop, STATUS `BLOCKED` or `PARTIALLY_VERIFIED`, inform user |
+
+After timeout: **no silent continue**. Report done vs open + next smallest chunk.
+
+### Rule 4 — Chunking instead of 14-page marathons
+- One executor unit = **max 3–5 files** or one clear subtask — **not** "14 money pages bodies batch" in one background session.
+- After each chunk: shippable state, tick todo, **then** next chunk.
+- Long "Running for Xm" without `output.txt` / tool activity > 5 min → treat as hang; abort after 20 min.
+
+### Rule 5 — Parent waits smartly
+- Poll filesystem/status with backoff 2s→5s→10s→20s→60s.
+- **Max wait per phase: 25 min**, then time out the phase.
+- Never 50× `task-notification` and never eternal wait without a kill decision.
+
+### Rule 6 — User communication on hang
+If a background task exceeds 20 min without completion: tell the user it is considered hung, they may stop it, and the harness will re-chunk the work.
 
 ## Done Gate (deterministic, machine-observed)
 
